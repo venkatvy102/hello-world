@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController } from 'ionic-angular';
 import { HomeService } from './home.service';
 import { HTTP } from '@ionic-native/http';
-import { IHome } from './Home';
+import { IHome } from './home';
+
 
 @Component({
   selector: 'page-home',
@@ -36,7 +37,6 @@ export class HomePage {
         this._homeService.getMovies(this.searchString).subscribe(users => {
           console.log(users);
           this.searchResults = users;
-          console.log(this.searchResults);
         });
         
         setTimeout(() => {

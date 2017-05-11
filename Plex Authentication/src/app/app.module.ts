@@ -1,16 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, NgModule, Pipe, PipeTransform } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
-
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home.component';
-import { ListPage } from '../pages/list/list';
 
+import { HomePage } from '../pages/home/home.component';
+import { HomeSortPipe } from '../pages/home/home-sort.pipe';
 import { HomeService } from '../pages/home/home.service';
+
+import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -19,13 +20,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    HomeSortPipe    
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpModule,
-    FormsModule
+    FormsModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
