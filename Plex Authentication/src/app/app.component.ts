@@ -7,6 +7,7 @@ import { HTTP } from '@ionic-native/http';
 
 import { HomeService } from '../pages/home/home.service';
 
+
 import { HomePage } from '../pages/home/home.component';
 import { ListPage } from '../pages/list/list';
 
