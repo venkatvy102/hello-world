@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h3>Plex Automation</h3>
+  
+  <ion-item>
+    <ion-label floating>Search</ion-label>
+    <ion-input type="text" [(ngModel)]="searchString"></ion-input>
+  </ion-item>  
+  
+  <button ion-button full (click)="findMovies()">Find Movies</button>
+
+
+  <ion-card *ngFor="let result of searchResults" >
+    <div (click)="cardClicked(result.id)">
+    <img [src]="'https://image.tmdb.org/t/p/w640/' + result.poster_path" *ngIf="result.poster_path != null">
+    <!--<ion-fab right top>
+      <button ion-fab>
+        <ion-icon name="pin"></ion-icon>
+      </button>
+    </ion-fab>-->
+
+    <ion-item>
+      <ion-icon name="videocam" item-left large></ion-icon>
+      <h2>{{ result.original_title }}</h2>
+      <p>{{ result.overview }}</p>
+    </ion-item>
+
+    <ion-item>
+      <span item-left><ion-icon name="star-half"></ion-icon> {{ result.popularity | number : '1.2-2' }}</span>
+      <span item-left><ion-icon name="calendar"></ion-icon> {{ result.release_date }}</span>
+      <button ion-button icon-left clear item-right>
+        Select&nbsp;
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-item>
+    </div>
+  </ion-card>
+  
+
+  <ion-list *ngIf="searchResults != null">
+    <button ion-item *ngFor="let result of searchResults">
+      <ion-thumbnail item-left>
+        <img [src]="'https://image.tmdb.org/t/p/w640/' + result.poster_path" *ngIf="result.poster_path != null">
+      </ion-thumbnail>
+      <h2>{{ result.original_title }}</h2>
+      <p>{{ result.overview }}</p>
+    </button>
+  </ion-list>
+
+</ion-content>
