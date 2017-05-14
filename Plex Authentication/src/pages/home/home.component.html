@@ -34,14 +34,14 @@
       </ion-item>
 
       <ion-item>
-        <span item-left><ion-icon name="star-half"></ion-icon> {{ result.vote_average | number : '1.2-2' }}</span>
-        <span item-left><ion-icon name="trending-up"></ion-icon> {{ result.popularity | number : '1.2-2' }}</span>
-        <span item-right><ion-icon name="calendar"></ion-icon> {{ result.release_date }}</span>
+        <span item-left *ngIf="result.vote_average != null"><ion-icon name="star-half"></ion-icon> {{ result.vote_average | number : '1.2-2' }}</span>
+        <span item-left *ngIf="result.popularity != null"><ion-icon name="trending-up"></ion-icon> {{ result.popularity | number : '1.2-2' }}</span>
+        <span item-right *ngIf="result.release_date"><ion-icon name="calendar"></ion-icon> {{ result.release_date }}</span>
       </ion-item>
       </div>
     </ion-card>
   </div>
-  <ion-list *ngIf="searchResults != null">
+  <!--<ion-list *ngIf="searchResults != null">
     <button ion-item *ngFor="let result of searchResults">
       <ion-thumbnail item-left>
         <img [src]="'https://image.tmdb.org/t/p/w640/' + result.poster_path" *ngIf="result.poster_path != null">
@@ -49,6 +49,6 @@
       <h2>{{ result.original_title }}</h2>
       <p>{{ result.overview }}</p>
     </button>
-  </ion-list>
+  </ion-list>-->
 
 </ion-content>
