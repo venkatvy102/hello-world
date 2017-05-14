@@ -9,6 +9,7 @@ import { HomeService } from '../pages/home/home.service';
 
 
 import { HomePage } from '../pages/home/home.component';
+import { HomeDetailsPage } from '../pages/home-details/home-details.component';
 import { ListPage } from '../pages/list/list';
 
 @Component({
@@ -28,6 +29,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
+      { title: 'HomeDetails', component: HomeDetailsPage },
       { title: 'List', component: ListPage }
     ];
 

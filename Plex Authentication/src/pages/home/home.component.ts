@@ -3,7 +3,7 @@ import { NavController, AlertController, LoadingController } from 'ionic-angular
 import { HomeService } from './home.service';
 import { HTTP } from '@ionic-native/http';
 import { IHome } from './home';
-
+import { HomeDetailsPage } from '../home-details/home-details.component';
 
 @Component({
   selector: 'page-home',
@@ -47,11 +47,16 @@ export class HomePage {
 
   cardClicked(index:number) {
     console.log('card clicked' + index);
-      let alert = this.alertCtrl.create({
-          title: 'Clicked!',
-          subTitle: 'You clicked on item id: ' + index,
-          buttons: ['OK']
-        });
-        alert.present();
+      // let alert = this.alertCtrl.create({
+      //   title: 'Clicked!',
+      //   subTitle: 'You clicked on item id: ' + index,
+      //   buttons: ['OK']
+      // });
+      // alert.present();
+
+    let homeContent = this.searchResults.filter(home => home.id === index)[0];
+
+        this.navCtrl.push(HomeDetailsPage, { detailContent: homeContent });
+
   }
 }

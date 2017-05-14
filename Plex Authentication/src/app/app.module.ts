@@ -8,6 +8,8 @@ import { RouterModule } from '@angular/router';
 import { MyApp } from './app.component';
 
 import { HomePage } from '../pages/home/home.component';
+import { HomeDetailsPage } from '../pages/home-details/home-details.component';
+
 import { HomeSortPipe } from '../pages/home/home-sort.pipe';
 import { HomeService } from '../pages/home/home.service';
 
@@ -20,6 +22,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   declarations: [
     MyApp,
     HomePage,
+    HomeDetailsPage,
     ListPage,
     HomeSortPipe    
   ],
@@ -33,6 +36,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     MyApp,
     HomePage,
+    HomeDetailsPage,
     ListPage
   ],
   providers: [
