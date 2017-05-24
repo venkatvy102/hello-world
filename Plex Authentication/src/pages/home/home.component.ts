@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController } from 'ionic-angular';
+import { NavController, AlertController, LoadingController, ModalController } from 'ionic-angular';
 import { HomeService } from './home.service';
 import { HTTP } from '@ionic-native/http';
 import { IHome } from './home';
 import { HomeDetailsPage } from '../home-details/home-details.component';
+import { Storage } from '@ionic/storage';
+import { LoginPage } from '../login/login.component';
+import { IToken } from '../login/token';
 
 @Component({
   selector: 'page-home',
@@ -14,9 +17,26 @@ export class HomePage {
   searchString: string;
   output: string;
   searchResults: IHome[];
+  loginToken: IToken;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public loadingCtrl: LoadingController, public _homeService: HomeService, private http: HTTP) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public loadingCtrl: LoadingController, public _homeService: HomeService, private http: HTTP, public modalCtrl: ModalController, private storage: Storage) {
 
+  }
+
+  ionViewDidLoad() {
+    this.storage.get('login_auth_token').then((val) => {
+      console.log('Your token: ', val);
+      this.loginToken = val;
+      if(val == null) {
+        this.showLogin();
+      }
+    });
+  }
+
+  showLogin() {
+    console.log('Creating login page');
+    let login = this.modalCtrl.create(LoginPage);      
+    login.present();
   }
 
   findMovies() {
@@ -58,5 +78,10 @@ export class HomePage {
 
         this.navCtrl.push(HomeDetailsPage, { detailContent: homeContent });
 
+  }
+
+  logout() {
+    this.storage.remove('login_auth_token');
+    this.showLogin();
   }
 }

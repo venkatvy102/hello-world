@@ -4,14 +4,16 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-
+import { IonicStorageModule } from '@ionic/storage'
 import { MyApp } from './app.component';
 
 import { HomePage } from '../pages/home/home.component';
 import { HomeDetailsPage } from '../pages/home-details/home-details.component';
+import { LoginPage } from '../pages/login/login.component';
 
 import { HomeSortPipe } from '../pages/home/home-sort.pipe';
 import { HomeService } from '../pages/home/home.service';
+import { LoginService } from '../pages/login/login.service';
 
 import { ListPage } from '../pages/list/list';
 
@@ -24,25 +26,29 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     HomeDetailsPage,
     ListPage,
-    HomeSortPipe    
+    HomeSortPipe,
+    LoginPage    
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpModule,
     FormsModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
     HomeDetailsPage,
+    LoginPage,
     ListPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     HomeService,
+    LoginService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
