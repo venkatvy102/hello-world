@@ -14,6 +14,7 @@ import { LoginPage } from '../pages/login/login.component';
 import { HomeSortPipe } from '../pages/home/home-sort.pipe';
 import { HomeService } from '../pages/home/home.service';
 import { LoginService } from '../pages/login/login.service';
+import { HomeDetailsService } from '../pages/home-details/home-details.service';
 
 import { ListPage } from '../pages/list/list';
 
@@ -49,6 +50,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SplashScreen,
     HomeService,
     LoginService,
+    HomeDetailsService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
