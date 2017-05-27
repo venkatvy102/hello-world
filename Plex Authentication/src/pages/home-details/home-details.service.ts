@@ -11,8 +11,8 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class HomeDetailsService {
 
-    private _authUrl: string = 'http://localhost:16538/api/plex/addtoplex';
-    //private _authUrl: string = 'https://www.venkatpasumarthi.com/api/plex/addtoplex';
+    //private _authUrl: string = 'http://localhost:16538/api/plex/addtoplex';
+    private _authUrl: string = 'https://www.venkatpasumarthi.com/api/api/plex/addtoplex';
 
     constructor(private _http: Http){
 
