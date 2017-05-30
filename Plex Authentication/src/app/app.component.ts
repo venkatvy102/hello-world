@@ -11,6 +11,7 @@ import { HomeService } from '../pages/home/home.service';
 import { HomePage } from '../pages/home/home.component';
 import { HomeDetailsPage } from '../pages/home-details/home-details.component';
 import { ListPage } from '../pages/list/list';
+import { SessionsPage } from '../pages/sessions/sessions.component';
 
 @Component({
   templateUrl: 'app.html',
@@ -30,7 +31,7 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
 
-      { title: 'List', component: ListPage }
+      { title: 'Active Sessions', component: SessionsPage }
     ];
 
   }

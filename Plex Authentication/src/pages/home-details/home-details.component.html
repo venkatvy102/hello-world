@@ -37,9 +37,19 @@
     <ion-item>
       <ion-label>Quality</ion-label>
       <ion-select [(ngModel)]="quality" interface="action-sheet">
-        <ion-option value="bluray 1080p">BluRay 1080p</ion-option>
-        <ion-option value="bluray 720p">BluRay 720p</ion-option>
-        <ion-option value="dvdrip">DVD</ion-option>
+        <ion-option value="BluRay 1080p">BluRay 1080p</ion-option>
+        <ion-option value="BluRay 720p">BluRay 720p</ion-option>
+        <ion-option value="DvdRip">DVD</ion-option>
+      </ion-select>
+  </ion-item>
+  <ion-item>
+      <ion-label>Language</ion-label>
+      <ion-select [(ngModel)]="language" interface="action-sheet">
+        <ion-option value="English">English</ion-option>
+        <ion-option value="Hindi">Hindi</ion-option>
+        <ion-option value="Telugu">Telugu</ion-option>
+        <ion-option value="Tamil">Tamil</ion-option>
+        <ion-option value="Kannada">Kannada</ion-option>
       </ion-select>
   </ion-item>
   <button ion-button block (click)="addToPlex()">Add To Plex</button>

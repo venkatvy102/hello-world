@@ -15,6 +15,7 @@ export class HomeDetailsPage {
   detailsHeading: IHome;
   quality: string;
   token: IToken;
+  language: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public homeDetailsService: HomeDetailsService, private storage: Storage) {
       let id = navParams.get('id');
@@ -43,7 +44,7 @@ export class HomeDetailsPage {
       });
 
       this.homeDetailsService.addToPlex(this.detailsHeading.original_title, this.quality, this.detailsHeading.id.toString(),
-      this.token.access_token).subscribe(returnval => {
+      this.token.access_token, this.detailsHeading.release_date, this.language).subscribe(returnval => {
           if(returnval == true) {
             let alert = this.alertCtrl.create({
               title: 'Added Successfully!',

@@ -23,6 +23,8 @@ export class LoginPage {
                 console.log(tokenize);
                 this.tokenInfo = tokenize;
                 this.storage.set('login_auth_token', tokenize);
+                this.storage.set('login_username', this.userName);
+                this.storage.set('login_password', this.password);
                 this.viewCtrl.dismiss();
             });
         }

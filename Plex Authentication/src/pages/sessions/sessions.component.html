@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Active Sessions</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+      <template ngFor let-video [ngForOf]="videos">
+        <ion-item-sliding *ngFor="let user of video.usr">
+            <ion-item>
+            <ion-avatar item-left>
+                <img [src]="user.thumb">
+            </ion-avatar>
+            <h2>{{user.title}}</h2>
+            <p>{{video.title}}</p>
+            </ion-item>
+            <ion-item-options side="left">
+            <button ion-button color="primary">
+                <ion-icon name="text"></ion-icon>
+                Text
+            </button>
+            <button ion-button color="secondary">
+                <ion-icon name="call"></ion-icon>
+                Call
+            </button>
+            </ion-item-options>
+            <ion-item-options side="right">
+            <button ion-button color="primary">
+                <ion-icon name="mail"></ion-icon>
+                Email
+            </button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </template>
+  </ion-list>
+</ion-content>
