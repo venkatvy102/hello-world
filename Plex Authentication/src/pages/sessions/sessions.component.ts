@@ -34,12 +34,20 @@ export class SessionsPage {
         this.sessionsService.getActiveSessions(this.userName, this.password, this.token.access_token).subscribe(returnVal => {
             console.log(returnVal);
             this.videos = returnVal;
-        })
+        });
     });
   }
 
   
-  ionViewDidLoad() {
-    
-  }
+  doRefresh(refresher) {
+        console.log('Begin async operation', refresher);
+
+        this.sessionsService.getActiveSessions(this.userName, this.password, this.token.access_token).subscribe(returnVal => {
+            console.log(returnVal);
+            this.videos = returnVal;
+        });
+        
+        refresher.complete();
+        console.log('Async operation has ended');
+    }
 }
