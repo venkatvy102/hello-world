@@ -11,14 +11,16 @@ import { HomePage } from '../pages/home/home.component';
 import { HomeDetailsPage } from '../pages/home-details/home-details.component';
 import { LoginPage } from '../pages/login/login.component';
 import { SessionsPage } from '../pages/sessions/sessions.component';
+import { HomeDetailsContentPage } from '../pages/home-details-content/home-details-content.component';
+import { ListPage } from '../pages/list/list';
 
 import { HomeSortPipe } from '../pages/home/home-sort.pipe';
+
 import { HomeService } from '../pages/home/home.service';
 import { LoginService } from '../pages/login/login.service';
 import { HomeDetailsService } from '../pages/home-details/home-details.service';
 import { SessionsService } from '../pages/sessions/sessions.service';
-
-import { ListPage } from '../pages/list/list';
+import { HomeDetailsContentService } from '../pages/home-details-content/home-details-content.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -45,6 +47,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     HomeDetailsPage,
+    HomeDetailsContentPage,
     LoginPage,
     ListPage,
     SessionsPage
@@ -56,6 +59,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LoginService,
     HomeDetailsService,
     SessionsService,
+    HomeDetailsContentService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
