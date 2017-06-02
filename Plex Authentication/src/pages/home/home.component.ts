@@ -57,11 +57,8 @@ export class HomePage {
         this._homeService.getMovies(this.searchString).subscribe(users => {
           console.log(users);
           this.searchResults = users;
+          loader.dismiss();
         });
-        
-        setTimeout(() => {
-            loader.dismiss();
-          }, 10);
     }
   }
 
@@ -75,8 +72,7 @@ export class HomePage {
       // alert.present();
 
     let homeContent = this.searchResults.filter(home => home.id === index)[0];
-
-        this.navCtrl.push(HomeDetailsPage, { detailContent: homeContent });
+    this.navCtrl.push(HomeDetailsPage, { detailContent: homeContent });
 
   }
 

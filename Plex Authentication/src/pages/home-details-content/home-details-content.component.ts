@@ -61,7 +61,7 @@ export class HomeDetailsContentPage {
             });
             alert.present();
           }
-      });;
+      });
     }
     else {
         let alert = this.alertCtrl.create({

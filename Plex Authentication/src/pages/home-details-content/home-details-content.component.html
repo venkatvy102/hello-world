@@ -1,56 +1,17 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>{{ detailsHeading.original_title }}</ion-title>
+    <ion-title>Select a Torrent</ion-title>
   </ion-navbar>
 </ion-header>
 
-
-
- <ion-content padding>
-    <ion-card>
-      <img [src]="'https://image.tmdb.org/t/p/w640/' + detailsHeading.poster_path" *ngIf="detailsHeading.poster_path != null">
-    </ion-card>
-    <ion-item>
-      <ion-icon name="videocam" item-left></ion-icon>
-      {{ detailsHeading.original_title }}
-    </ion-item>
-    <ion-item>
-      <ion-icon name="star-half" item-left></ion-icon>
-      {{ detailsHeading.vote_average  | number : '1.2-2' }}
-    </ion-item>
-    <ion-item>
-      <ion-icon name="trending-up" item-left></ion-icon>
-      {{ detailsHeading.popularity  | number : '1.2-2' }}
-    </ion-item>
-    <ion-item>
-      <ion-icon name="calendar" item-left></ion-icon>
-      {{ detailsHeading.release_date }}
-    </ion-item>
-    <ion-card>
-      <ion-card-header>
-        Description
-      </ion-card-header>
-      <ion-card-content>
-        {{ detailsHeading.overview }}
-      </ion-card-content>
-    </ion-card>
-    <ion-item>
-      <ion-label>Quality</ion-label>
-      <ion-select [(ngModel)]="quality" interface="action-sheet">
-        <ion-option value="BluRay 1080p">BluRay 1080p</ion-option>
-        <ion-option value="BluRay 720p">BluRay 720p</ion-option>
-        <ion-option value="DvdRip">DVD</ion-option>
-      </ion-select>
-  </ion-item>
-  <ion-item>
-      <ion-label>Language</ion-label>
-      <ion-select [(ngModel)]="language" interface="action-sheet">
-        <ion-option value="English">English</ion-option>
-        <ion-option value="Hindi">Hindi</ion-option>
-        <ion-option value="Telugu">Telugu</ion-option>
-        <ion-option value="Tamil">Tamil</ion-option>
-        <ion-option value="Kannada">Kannada</ion-option>
-      </ion-select>
-  </ion-item>
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      Header
+    </ion-card-header>
+    <ion-card-content>
+      The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
+    </ion-card-content>
+  </ion-card>
   <button ion-button block (click)="addToPlex()">Add To Plex</button>
 </ion-content>

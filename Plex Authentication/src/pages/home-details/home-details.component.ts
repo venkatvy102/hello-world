@@ -17,7 +17,7 @@ export class HomeDetailsPage {
   token: IToken;
   language: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public homeDetailsService: HomeDetailsService, private storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public homeDetailsService: HomeDetailsService, private storage: Storage, private loadingCtrl: LoadingController) {
       let id = navParams.get('id');
       this.detailsHeading = navParams.get('detailContent');
   }
@@ -35,7 +35,13 @@ export class HomeDetailsPage {
 
 
   addToPlex() {
-    if(this.quality){
+    if(this.quality) {
+      
+      let loader = this.loadingCtrl.create({
+          content: "Finding Movies..."
+      });
+      loader.present();
+
       console.log(this.quality);        
 
       this.storage.get('login_auth_token').then((val) => {
@@ -51,6 +57,7 @@ export class HomeDetailsPage {
               subTitle: 'Selected movie has been added to plex.',
               buttons: ['OK']
             });
+            loader.dismiss();
             alert.present();
           }
           else {
@@ -59,9 +66,10 @@ export class HomeDetailsPage {
               subTitle: 'Something wrong happened while trying to add selected movie to plex. Please contact administrator!',
               buttons: ['OK']
             });
+            loader.dismiss();
             alert.present();
           }
-      });;
+      });
     }
     else {
         let alert = this.alertCtrl.create({
