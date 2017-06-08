@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Settings</ion-title>
+    <logout></logout>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
+
+    <ion-item>
+      <ion-label>Email Notifications</ion-label>
+      <ion-toggle [(ngModel)]="emailNotifications"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Push  Notifications</ion-label>
+      <ion-toggle [(ngModel)]="pushNotifications" disabled="true"></ion-toggle>
+    </ion-item>
+
+  </ion-list>
+</ion-content>

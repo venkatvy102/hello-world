@@ -13,6 +13,8 @@ import { LoginPage } from '../pages/login/login.component';
 import { SessionsPage } from '../pages/sessions/sessions.component';
 import { HomeDetailsContentPage } from '../pages/home-details-content/home-details-content.component';
 import { ListPage } from '../pages/list/list';
+import { LogoutComponent } from '../pages/logout/logout.component';
+import { SettingsPage } from '../pages/settings/settings.component';
 
 import { HomeSortPipe } from '../pages/home/home-sort.pipe';
 
@@ -30,10 +32,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     HomeDetailsPage,
+    HomeDetailsContentPage,
     ListPage,
     HomeSortPipe,
     LoginPage,
-    SessionsPage    
+    SessionsPage,
+    LogoutComponent,
+    SettingsPage    
   ],
   imports: [
     BrowserModule,
@@ -50,7 +55,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomeDetailsContentPage,
     LoginPage,
     ListPage,
-    SessionsPage
+    SessionsPage,
+    LogoutComponent,
+    SettingsPage
   ],
   providers: [
     StatusBar,

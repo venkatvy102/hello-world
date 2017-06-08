@@ -8,14 +8,16 @@
     <ion-card>
         <img src="assets/img/plexlogo.png"/>
     </ion-card>
-  <ion-item>
-    <ion-label floating>User Name</ion-label>
-    <ion-input type="text" [(ngModel)]="userName"></ion-input>
-  </ion-item>  
-  <ion-item>
-    <ion-label floating>Password</ion-label>
-    <ion-input type="text" [(ngModel)]="password"></ion-input>
-  </ion-item>
+  <form ng-submit="verifyAuth()">
+    <ion-item>
+      <ion-label floating>User Name</ion-label>
+      <ion-input type="text" [(ngModel)]="userName" name="username"></ion-input>
+    </ion-item>  
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>
+    </ion-item>
 
-  <button ion-button full (click)="verifyAuth()">Login</button>
+    <button type="submit" ion-button full (click)="verifyAuth()" name="btnLogin">Login</button>
+  </form>
 </ion-content>

@@ -5,23 +5,20 @@
     </button>
     <ion-title>Home</ion-title>
     
-    <ion-buttons end>
-      <button ion-button (click)="logout()">
-        Logout
-      </button>
-    </ion-buttons>
+    <logout></logout>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <h3>Plex Automation</h3>
   
-  <ion-item>
-    <ion-label floating>Search</ion-label>
-    <ion-input type="text" [(ngModel)]="searchString"></ion-input>
-  </ion-item>  
-  
-  <button ion-button full (click)="findMovies()">Find Movies</button>
+  <form ng-submit="findMovies()">
+    <ion-item>
+      <ion-label name="lblSearch" floating>Search</ion-label>
+      <ion-input type="text" name="searchString" [(ngModel)]="searchString"></ion-input>
+    </ion-item>  
+    <button ion-button full type="submit" (click)="findMovies()">Find Movies</button>
+  </form>
 
   <div *ngIf="searchResults!=null">
     <ion-card *ngFor="let result of (searchResults | sortHome: true)">

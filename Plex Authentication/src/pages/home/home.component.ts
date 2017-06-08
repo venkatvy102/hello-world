@@ -24,20 +24,10 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
-    this.storage.get('login_auth_token').then((val) => {
-      console.log('Your token: ', val);
-      this.loginToken = val;
-      if(val == null) {
-        this.showLogin();
-      }
-    });
-  }
-
-  showLogin() {
-    console.log('Creating login page');
-    let login = this.modalCtrl.create(LoginPage);      
-    login.present();
-  }
+        this.storage.get('login_auth_token').then((val) => {
+            this.loginToken = val;
+        });
+    }
 
   findMovies() {
     if(!this.searchString) {
@@ -74,12 +64,5 @@ export class HomePage {
     let homeContent = this.searchResults.filter(home => home.id === index)[0];
     this.navCtrl.push(HomeDetailsPage, { detailContent: homeContent });
 
-  }
-
-  logout() {
-    this.storage.remove('login_auth_token');
-    this.storage.remove('login_username');
-    this.storage.remove('login_password');
-    this.showLogin();
   }
 }
