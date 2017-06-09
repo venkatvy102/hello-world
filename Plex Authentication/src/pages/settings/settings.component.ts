@@ -6,7 +6,6 @@ import { SettingsService } from './settings.service';
 import { Storage } from '@ionic/storage';
 import { IToken } from '../login/token';
 import { IPlexAutomationSettings } from '../settings/plexautomationsettings';
-import { Vibration } from '@ionic-native/vibration';
 
 
 @Component({
@@ -50,8 +49,6 @@ export class SettingsPage {
         if(this.haptic.available()) {
             this.haptic.selection();
         }
-
-        this.vibration.vibrate(1000);
 
         this.settingsService.updateUserSettings(this.userName, this.token.access_token, this.settings).subscribe(returnVal => {
             console.log(returnVal);           
