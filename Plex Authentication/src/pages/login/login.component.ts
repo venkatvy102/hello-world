@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController, LoadingController
 import { Storage } from '@ionic/storage';
 import { LoginService } from './login.service';
 import { IToken } from './token';
+import { TouchID } from '@ionic-native/touch-id';
 
 @Component({
     selector: 'login',
@@ -13,8 +14,21 @@ export class LoginPage {
     password: string;
     tokenInfo: IToken;
     
-    constructor(public _loginService: LoginService,public navCtrl: NavController, public navParams:NavParams, public alertCtrl: AlertController, public modalCtrl: ModalController, private storage: Storage, public viewCtrl: ViewController) {
+    constructor(private touchId: TouchID, public _loginService: LoginService,public navCtrl: NavController, public navParams:NavParams, public alertCtrl: AlertController, public modalCtrl: ModalController, private storage: Storage, public viewCtrl: ViewController) {
+        this.touchId.isAvailable()
+        .then(
+            res => {
+                console.log('TouchID is available!');
+                this.touchId.verifyFingerprint('Scan your fingerprint please')
+                .then(
+                    res => console.log('Ok', res),
+                    err => console.error('Error', err)
+                );
+            },
+            err => console.error('TouchID is not available', err)
+        );
 
+        
     }
 
     verifyAuth() {
