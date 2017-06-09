@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { IonicStorageModule } from '@ionic/storage'
+import { Vibration } from '@ionic-native/vibration';
 import { MyApp } from './app.component';
 
 import { HomePage } from '../pages/home/home.component';

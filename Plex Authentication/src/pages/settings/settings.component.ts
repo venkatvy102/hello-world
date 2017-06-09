@@ -6,6 +6,7 @@ import { SettingsService } from './settings.service';
 import { Storage } from '@ionic/storage';
 import { IToken } from '../login/token';
 import { IPlexAutomationSettings } from '../settings/plexautomationsettings';
+import { Vibration } from '@ionic-native/vibration';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class SettingsPage {
   userName: string;
   token: IToken;
   
-  constructor(public settingsService: SettingsService, public navCtrl: NavController, public navParams: NavParams, 
+  constructor(private vibration: Vibration, public settingsService: SettingsService, public navCtrl: NavController, public navParams: NavParams, 
   public alertCtrl: AlertController, private storage: Storage, private haptic:Haptic) {
         this.storage.get('login_username').then((val) => {
             console.log("Sessions: " + val)
@@ -49,6 +50,8 @@ export class SettingsPage {
         if(this.haptic.available()) {
             this.haptic.selection();
         }
+
+        this.vibration.vibrate(1000);
 
         this.settingsService.updateUserSettings(this.userName, this.token.access_token, this.settings).subscribe(returnVal => {
             console.log(returnVal);           
