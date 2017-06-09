@@ -23,6 +23,7 @@ import { LoginService } from '../pages/login/login.service';
 import { HomeDetailsService } from '../pages/home-details/home-details.service';
 import { SessionsService } from '../pages/sessions/sessions.service';
 import { HomeDetailsContentService } from '../pages/home-details-content/home-details-content.service';
+import { SettingsService } from '../pages/settings/settings.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -67,6 +68,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomeDetailsService,
     SessionsService,
     HomeDetailsContentService,
+    SettingsService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

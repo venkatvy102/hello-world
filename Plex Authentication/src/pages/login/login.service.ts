@@ -11,7 +11,7 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class LoginService {
 
-    //private _authUrl: string = 'http://localhost:16538/token';
+    // private _authUrl: string = 'http://localhost:16538/token';
     private _authUrl: string = 'https://www.venkatpasumarthi.com/api/token';
 
     constructor(private _http: Http){

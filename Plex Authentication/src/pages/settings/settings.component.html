@@ -21,12 +21,12 @@
 
     <ion-item>
       <ion-label>Email Notifications</ion-label>
-      <ion-toggle [(ngModel)]="emailNotifications"></ion-toggle>
+      <ion-toggle [(ngModel)]="settings.EmailNotifications" (ionChange)='updateUserSettings()'></ion-toggle>
     </ion-item>
 
     <ion-item>
       <ion-label>Push  Notifications</ion-label>
-      <ion-toggle [(ngModel)]="pushNotifications" disabled="true"></ion-toggle>
+      <ion-toggle [(ngModel)]="settings.PushNotifications" (ionChange)='updateUserSettings()'></ion-toggle>
     </ion-item>
 
   </ion-list>
