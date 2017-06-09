@@ -18,7 +18,7 @@ export class SettingsPage {
   userName: string;
   token: IToken;
   
-  constructor(private vibration: Vibration, public settingsService: SettingsService, public navCtrl: NavController, public navParams: NavParams, 
+  constructor(public settingsService: SettingsService, public navCtrl: NavController, public navParams: NavParams, 
   public alertCtrl: AlertController, private storage: Storage, private haptic:Haptic) {
         this.storage.get('login_username').then((val) => {
             console.log("Sessions: " + val)
