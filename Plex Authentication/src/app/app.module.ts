@@ -70,6 +70,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SessionsService,
     HomeDetailsContentService,
     SettingsService,
+    Vibration,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
