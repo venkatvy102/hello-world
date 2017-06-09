@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController, Haptic } from 'ionic-angular';
 import { HTTP } from '@ionic-native/http';
 import { IHome } from '../home/home';
 import { SettingsService } from './settings.service';
@@ -17,7 +17,8 @@ export class SettingsPage {
   userName: string;
   token: IToken;
   
-  constructor(public settingsService: SettingsService, public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private storage: Storage) {
+  constructor(public settingsService: SettingsService, public navCtrl: NavController, public navParams: NavParams, 
+  public alertCtrl: AlertController, private storage: Storage, private haptic:Haptic) {
         this.storage.get('login_username').then((val) => {
             console.log("Sessions: " + val)
             this.userName = val;
@@ -44,6 +45,10 @@ export class SettingsPage {
     }
     
     updateUserSettings(): void {
+        if(this.haptic.available()) {
+            this.haptic.selection();
+        }
+
         this.settingsService.updateUserSettings(this.userName, this.token.access_token, this.settings).subscribe(returnVal => {
             console.log(returnVal);           
         });
