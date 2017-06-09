@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { IonicStorageModule } from '@ionic/storage'
 import { Vibration } from '@ionic-native/vibration';
+import { TouchID } from '@ionic-native/touch-id';
 import { MyApp } from './app.component';
 
 import { HomePage } from '../pages/home/home.component';
@@ -71,6 +72,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomeDetailsContentService,
     SettingsService,
     Vibration,
+    TouchID,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
