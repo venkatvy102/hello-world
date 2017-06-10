@@ -15,20 +15,35 @@ export class LoginPage {
     tokenInfo: IToken;
     
     constructor(private touchId: TouchID, public _loginService: LoginService,public navCtrl: NavController, public navParams:NavParams, public alertCtrl: AlertController, public modalCtrl: ModalController, private storage: Storage, public viewCtrl: ViewController) {
-        this.touchId.isAvailable()
-        .then(
-            res => {
-                console.log('TouchID is available!');
-                this.touchId.verifyFingerprint('Scan your fingerprint please')
-                .then(
-                    res => console.log('Ok', res),
-                    err => console.error('Error', err)
-                );
-            },
-            err => console.error('TouchID is not available', err)
-        );
-
         
+        this.storage.get('login_auth_token').then((val) => {
+            this.tokenInfo = val;
+        });
+
+        this.storage.get('login_username').then((val) => {
+            console.log("Sessions: " + val)
+            this.userName = val;
+        });
+
+        this.storage.get('login_password').then((val) => {
+            console.log("Sessions: " + val)
+            this.password = val;
+
+            if(this.userName && this.password) {
+                this.touchId.isAvailable()
+                .then(
+                    res => {
+                        console.log('TouchID is available!');
+                        this.touchId.verifyFingerprint('Scan your fingerprint please')
+                        .then(
+                            res => this.verifyAuth(),
+                            err => console.error('Error', err)
+                        );
+                    },
+                    err => console.error('TouchID is not available', err)
+                );
+            }
+        });        
     }
 
     verifyAuth() {
@@ -58,5 +73,10 @@ export class LoginPage {
             });
             alert.present();
         }
+    }
+
+    removeUserCache() {
+        this.storage.remove('login_username');
+        this.storage.remove('login_password');
     }
 }

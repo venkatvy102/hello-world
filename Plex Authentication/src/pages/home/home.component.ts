@@ -24,10 +24,19 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
-        this.storage.get('login_auth_token').then((val) => {
-            this.loginToken = val;
-        });
-    }
+      this.storage.get('login_auth_token').then((val) => {
+          this.loginToken = val;
+          // if(val == null) {
+          //   this.showLogin();
+          // }
+      });
+  }
+  
+  showLogin() {
+      console.log('Creating login page');
+      let login = this.modalCtrl.create(LoginPage);      
+      login.present();
+  }
 
   findMovies() {
     if(!this.searchString) {

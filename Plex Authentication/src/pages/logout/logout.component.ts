@@ -27,10 +27,7 @@ export class LogoutComponent implements OnInit {
 
     onClick(): void {
         this.storage.remove('login_auth_token');
-        this.storage.remove('login_username');
-        this.storage.remove('login_password');
         this.showLogin();
-
         this.logoutClicked.emit("Logged out successfully");
     }
 
