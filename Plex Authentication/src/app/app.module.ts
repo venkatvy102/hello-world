@@ -8,6 +8,7 @@ import { IonicStorageModule } from '@ionic/storage'
 import { Vibration } from '@ionic-native/vibration';
 import { TouchID } from '@ionic-native/touch-id';
 import { MyApp } from './app.component';
+import { ThreeDeeTouch, ThreeDeeTouchQuickAction, ThreeDeeTouchForceTouch } from '@ionic-native/three-dee-touch';
 
 import { HomePage } from '../pages/home/home.component';
 import { HomeDetailsPage } from '../pages/home-details/home-details.component';
@@ -73,6 +74,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SettingsService,
     Vibration,
     TouchID,
+    ThreeDeeTouch, 
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController, ModalController, ViewController } from 'ionic-angular';
+import { ThreeDeeTouch, ThreeDeeTouchQuickAction, ThreeDeeTouchForceTouch } from '@ionic-native/three-dee-touch';
+
 import { Storage } from '@ionic/storage';
 import { LoginService } from './login.service';
 import { IToken } from './token';
 import { TouchID } from '@ionic-native/touch-id';
+import { SessionsPage } from '../sessions/sessions.component';
 
 @Component({
     selector: 'login',
@@ -14,7 +17,7 @@ export class LoginPage {
     password: string;
     tokenInfo: IToken;
     
-    constructor(private touchId: TouchID, public _loginService: LoginService,public navCtrl: NavController, public navParams:NavParams, public alertCtrl: AlertController, public modalCtrl: ModalController, private storage: Storage, public viewCtrl: ViewController) {
+    constructor(private threeDeeTouch: ThreeDeeTouch, private touchId: TouchID, public _loginService: LoginService,public navCtrl: NavController, public navParams:NavParams, public alertCtrl: AlertController, public modalCtrl: ModalController, private storage: Storage, public viewCtrl: ViewController) {
         
         this.storage.get('login_auth_token').then((val) => {
             this.tokenInfo = val;
@@ -55,6 +58,22 @@ export class LoginPage {
                 this.storage.set('login_username', this.userName);
                 this.storage.set('login_password', this.password);
                 this.viewCtrl.dismiss();
+
+                this.threeDeeTouch.isAvailable().then(isAvailable => 
+                {
+                    this.threeDeeTouch.configureQuickActions([{type: 'viewActiveSessions', title: 'View Active Sessions', subtitle: '', iconType: 'play'}])
+
+                    // Set event handler to check which Quick Action was pressed
+                    this.threeDeeTouch.onHomeIconPressed().subscribe(
+                        (payload) =>
+                            {
+                                if (payload.type == 'viewActiveSessions') {
+                                    this.navCtrl.setRoot(SessionsPage);
+                                }
+                            }
+                    );
+                });
+
             });
         }
         else if(!this.userName) {
