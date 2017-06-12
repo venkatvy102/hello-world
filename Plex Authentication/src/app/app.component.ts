@@ -37,21 +37,6 @@ export class MyApp {
       
       { title: 'Settings', component: SettingsPage }
     ];
-
-    this.threeDeeTouch.isAvailable().then(isAvailable => 
-    {
-        this.threeDeeTouch.configureQuickActions([{type: 'viewActiveSessions', title: 'View Active Sessions', subtitle: '', iconType: 'play'}])
-
-        // Set event handler to check which Quick Action was pressed
-        this.threeDeeTouch.onHomeIconPressed().subscribe(
-            (payload) =>
-                {
-                    if (payload.type == 'viewActiveSessions') {
-                        this.openPage(this.pages[2]);
-                    }
-                }
-        );
-    });
   }
 
   initializeApp() {
@@ -60,6 +45,21 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      this.threeDeeTouch.isAvailable().then(isAvailable => 
+      {
+          this.threeDeeTouch.configureQuickActions([{type: 'viewActiveSessions', title: 'View Active Sessions', subtitle: '', iconType: 'play'}])
+
+          // Set event handler to check which Quick Action was pressed
+          this.threeDeeTouch.onHomeIconPressed().subscribe(
+              (payload) =>
+                  {
+                      if (payload.type == 'viewActiveSessions') {
+                          this.openPage({ title: 'Active Sessions', component: SessionsPage });
+                      }
+                  }
+          );
+      });
     });
   }
 
