@@ -29,21 +29,6 @@ export class MyApp {
   constructor(private threeDeeTouch: ThreeDeeTouch, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
-    this.threeDeeTouch.isAvailable().then(isAvailable => 
-    {
-        this.threeDeeTouch.configureQuickActions([{type: 'viewActiveSessions', title: 'View Active Sessions', subtitle: '', iconType: 'play'}])
-
-        // Set event handler to check which Quick Action was pressed
-        this.threeDeeTouch.onHomeIconPressed().subscribe(
-            (payload) =>
-                {
-                    if (payload.type == 'viewActiveSessions') {
-                        this.rootPage = SessionsPage;
-                    }
-                }
-        );
-    });
-
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
@@ -59,6 +44,22 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
+    
+      this.threeDeeTouch.isAvailable().then(isAvailable => 
+      {
+          this.threeDeeTouch.configureQuickActions([{type: 'viewActiveSessions', title: 'View Active Sessions', subtitle: '', iconType: 'play'}])
+
+          // Set event handler to check which Quick Action was pressed
+          this.threeDeeTouch.onHomeIconPressed().subscribe(
+              (payload) =>
+                  {
+                      if (payload.type == 'viewActiveSessions') {
+                          this.rootPage = SessionsPage;
+                      }
+                  }
+          );
+      });
+
       this.splashScreen.hide();
     });
   }
