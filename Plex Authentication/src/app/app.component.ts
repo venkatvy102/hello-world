@@ -27,6 +27,8 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
 
   constructor(private threeDeeTouch: ThreeDeeTouch, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+    this.initializeApp();
+
     this.threeDeeTouch.isAvailable().then(isAvailable => 
     {
         this.threeDeeTouch.configureQuickActions([{type: 'viewActiveSessions', title: 'View Active Sessions', subtitle: '', iconType: 'play'}])
@@ -41,8 +43,6 @@ export class MyApp {
                 }
         );
     });
-
-    this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
