@@ -55,7 +55,7 @@ export class MyApp {
               (payload) =>
                   {
                       if (payload.type == 'viewActiveSessions') {
-                          this.openPage({ title: 'Active Sessions', component: SessionsPage });
+                          this.rootPage = SessionsPage;
                       }
                   }
           );
