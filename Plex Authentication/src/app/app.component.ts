@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { ThreeDeeTouch, ThreeDeeTouchQuickAction, ThreeDeeTouchForceTouch } from '@ionic-native/three-dee-touch';
 
 import { HTTP } from '@ionic-native/http';
 
@@ -25,7 +26,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(private threeDeeTouch: ThreeDeeTouch, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -37,6 +38,20 @@ export class MyApp {
       { title: 'Settings', component: SettingsPage }
     ];
 
+    this.threeDeeTouch.isAvailable().then(isAvailable => 
+    {
+        this.threeDeeTouch.configureQuickActions([{type: 'viewActiveSessions', title: 'View Active Sessions', subtitle: '', iconType: 'play'}])
+
+        // Set event handler to check which Quick Action was pressed
+        this.threeDeeTouch.onHomeIconPressed().subscribe(
+            (payload) =>
+                {
+                    if (payload.type == 'viewActiveSessions') {
+                        this.openPage(this.pages[1]);
+                    }
+                }
+        );
+    });
   }
 
   initializeApp() {
