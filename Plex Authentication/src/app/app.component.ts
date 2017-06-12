@@ -47,7 +47,7 @@ export class MyApp {
             (payload) =>
                 {
                     if (payload.type == 'viewActiveSessions') {
-                        this.openPage(this.pages[1]);
+                        this.openPage(this.pages[2]);
                     }
                 }
         );
