@@ -68,7 +68,7 @@ export class LoginPage {
                         (payload) =>
                             {
                                 if (payload.type == 'viewActiveSessions') {
-                                    this.navCtrl.push(SessionsPage);
+                                    this.navCtrl.setRoot(SessionsPage);
                                 }
                             }
                     );
