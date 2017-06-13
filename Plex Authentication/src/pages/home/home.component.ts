@@ -7,6 +7,8 @@ import { HomeDetailsPage } from '../home-details/home-details.component';
 import { Storage } from '@ionic/storage';
 import { LoginPage } from '../login/login.component';
 import { IToken } from '../login/token';
+import { ThreeDeeTouch, ThreeDeeTouchQuickAction, ThreeDeeTouchForceTouch } from '@ionic-native/three-dee-touch';
+import { SessionsPage } from '../sessions/sessions.component';
 
 @Component({
   selector: 'page-home',
@@ -19,8 +21,21 @@ export class HomePage {
   searchResults: IHome[];
   loginToken: IToken;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public loadingCtrl: LoadingController, public _homeService: HomeService, private http: HTTP, public modalCtrl: ModalController, private storage: Storage) {
+  constructor(private threeDeeTouch: ThreeDeeTouch, public navCtrl: NavController, public alertCtrl: AlertController, public loadingCtrl: LoadingController, public _homeService: HomeService, private http: HTTP, public modalCtrl: ModalController, private storage: Storage) {
+      this.threeDeeTouch.isAvailable().then(isAvailable => 
+      {
+          this.threeDeeTouch.configureQuickActions([{type: 'viewActiveSessions', title: 'View Active Sessions', subtitle: '', iconType: 'play'}])
 
+          // Set event handler to check which Quick Action was pressed
+          this.threeDeeTouch.onHomeIconPressed().subscribe(
+              (payload) =>
+                  {
+                      if (payload.type == 'viewActiveSessions') {
+                          this.navCtrl.setRoot(SessionsPage);
+                      }
+                  }
+          );
+      });
   }
 
   ionViewDidLoad() {
