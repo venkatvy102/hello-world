@@ -22,20 +22,7 @@ export class HomePage {
   loginToken: IToken;
 
   constructor(private threeDeeTouch: ThreeDeeTouch, public navCtrl: NavController, public alertCtrl: AlertController, public loadingCtrl: LoadingController, public _homeService: HomeService, private http: HTTP, public modalCtrl: ModalController, private storage: Storage) {
-      this.threeDeeTouch.isAvailable().then(isAvailable => 
-      {
-          this.threeDeeTouch.configureQuickActions([{type: 'viewActiveSessions', title: 'View Active Sessions', subtitle: '', iconType: 'play'}])
 
-          // Set event handler to check which Quick Action was pressed
-          this.threeDeeTouch.onHomeIconPressed().subscribe(
-              (payload) =>
-                  {
-                      if (payload.type == 'viewActiveSessions') {
-                          this.navCtrl.setRoot(SessionsPage);
-                      }
-                  }
-          );
-      });
   }
 
   ionViewDidLoad() {
