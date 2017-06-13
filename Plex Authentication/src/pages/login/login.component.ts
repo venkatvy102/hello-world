@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, LoadingController, ModalController, ViewController } from 'ionic-angular';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController, ModalController, ViewController, Events } from 'ionic-angular';
 import { ThreeDeeTouch, ThreeDeeTouchQuickAction, ThreeDeeTouchForceTouch } from '@ionic-native/three-dee-touch';
 
 import { Storage } from '@ionic/storage';
@@ -16,8 +16,10 @@ export class LoginPage {
     userName: string;
     password: string;
     tokenInfo: IToken;
+    @Output() loginClicked: EventEmitter<boolean> =
+        new EventEmitter<boolean>();
     
-    constructor(private threeDeeTouch: ThreeDeeTouch, private touchId: TouchID, public _loginService: LoginService,public navCtrl: NavController, public navParams:NavParams, public alertCtrl: AlertController, public modalCtrl: ModalController, private storage: Storage, public viewCtrl: ViewController) {
+    constructor(public events: Events, private threeDeeTouch: ThreeDeeTouch, private touchId: TouchID, public _loginService: LoginService,public navCtrl: NavController, public navParams:NavParams, public alertCtrl: AlertController, public modalCtrl: ModalController, private storage: Storage, public viewCtrl: ViewController) {
         
         this.storage.get('login_auth_token').then((val) => {
             this.tokenInfo = val;
@@ -68,7 +70,7 @@ export class LoginPage {
                         (payload) =>
                             {
                                 if (payload.type == 'viewActiveSessions') {
-                                    this.navCtrl.push(SessionsPage);
+                                    this.events.publish('3dtouch:sessions');
                                 }
                             }
                     );
