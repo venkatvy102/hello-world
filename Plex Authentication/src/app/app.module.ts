@@ -31,13 +31,6 @@ import { SettingsService } from '../pages/settings/settings.service';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-var config = {
-  platforms: {
-    ios: {
-      statusbarPadding: true
-    }
-  }
-}
 
 @NgModule({
   declarations: [
@@ -54,7 +47,13 @@ var config = {
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp, config),
+    IonicModule.forRoot(MyApp, {
+      platforms: {
+        ios: {
+          statusbarPadding: true
+        }
+      }
+    }),
     HttpModule,
     FormsModule,
     IonicStorageModule.forRoot()
