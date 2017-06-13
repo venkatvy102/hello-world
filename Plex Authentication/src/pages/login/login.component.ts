@@ -68,6 +68,7 @@ export class LoginPage {
                         (payload) =>
                             {
                                 if (payload.type == 'viewActiveSessions') {
+                                    this.navCtrl.popAll();
                                     this.navCtrl.setRoot(SessionsPage, {}, {animate: true, direction: 'forward'});
                                 }
                             }
