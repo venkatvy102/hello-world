@@ -32,7 +32,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 var config = {
-  statusbarPadding: true
+  platforms: {
+    ios: {
+      statusbarPadding: true
+    }
+  }
 }
 
 @NgModule({
