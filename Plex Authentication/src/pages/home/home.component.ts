@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController, ModalController } from 'ionic-angular';
+import { NavController, AlertController, LoadingController, ModalController, Events } from 'ionic-angular';
 import { HomeService } from './home.service';
 import { HTTP } from '@ionic-native/http';
 import { IHome } from './home';
@@ -7,6 +7,8 @@ import { HomeDetailsPage } from '../home-details/home-details.component';
 import { Storage } from '@ionic/storage';
 import { LoginPage } from '../login/login.component';
 import { IToken } from '../login/token';
+import { ThreeDeeTouch, ThreeDeeTouchQuickAction, ThreeDeeTouchForceTouch } from '@ionic-native/three-dee-touch';
+import { SessionsPage } from '../sessions/sessions.component';
 
 @Component({
   selector: 'page-home',
@@ -19,8 +21,11 @@ export class HomePage {
   searchResults: IHome[];
   loginToken: IToken;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public loadingCtrl: LoadingController, public _homeService: HomeService, private http: HTTP, public modalCtrl: ModalController, private storage: Storage) {
-
+  constructor(public events: Events, private threeDeeTouch: ThreeDeeTouch, public navCtrl: NavController, public alertCtrl: AlertController, public loadingCtrl: LoadingController, public _homeService: HomeService, private http: HTTP, public modalCtrl: ModalController, private storage: Storage) {
+      events.subscribe('3dtouch:sessions', () => {
+        // user and time are the same arguments passed in `events.publish(user, time)`
+        this.navCtrl.push(SessionsPage);
+      });
   }
 
   ionViewDidLoad() {
