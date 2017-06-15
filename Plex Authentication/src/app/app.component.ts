@@ -12,6 +12,7 @@ import { HomeDetailsPage } from '../pages/home-details/home-details.component';
 import { ListPage } from '../pages/list/list';
 import { SessionsPage } from '../pages/sessions/sessions.component';
 import { SettingsPage } from '../pages/settings/settings.component';
+import { StatusPage } from '../pages/status/status.component';
 
 @Component({
   templateUrl: 'app.html',
@@ -33,7 +34,9 @@ export class MyApp {
 
       { title: 'Active Sessions', component: SessionsPage },
       
-      { title: 'Settings', component: SettingsPage }
+      { title: 'Settings', component: SettingsPage },
+
+      { title: 'Status', component: StatusPage }
     ];
   }
 

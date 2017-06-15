@@ -18,6 +18,7 @@ import { HomeDetailsContentPage } from '../pages/home-details-content/home-detai
 import { ListPage } from '../pages/list/list';
 import { LogoutComponent } from '../pages/logout/logout.component';
 import { SettingsPage } from '../pages/settings/settings.component';
+import { StatusPage } from '../pages/status/status.component';
 
 import { HomeSortPipe } from '../pages/home/home-sort.pipe';
 
@@ -43,7 +44,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LoginPage,
     SessionsPage,
     LogoutComponent,
-    SettingsPage    
+    SettingsPage,
+    StatusPage    
   ],
   imports: [
     BrowserModule,
@@ -68,7 +70,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ListPage,
     SessionsPage,
     LogoutComponent,
-    SettingsPage
+    SettingsPage,
+    StatusPage
   ],
   providers: [
     StatusBar,
