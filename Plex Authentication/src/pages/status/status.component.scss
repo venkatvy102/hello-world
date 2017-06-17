@@ -5,6 +5,9 @@ $blue: #3498db;
 $blue-darken: #2980b9;
 $green: #1abc9c;
 $green-darken: #16a085;
+$red: #ac0024;
+$grey: #8e9396;
+
 * {
     margin: 0;
     padding: 0;
@@ -218,4 +221,119 @@ $green-darken: #16a085;
             }
         }
     }
+    .breadcrum-li-alreadyexist {
+        width: 25%;
+        float: left;
+        a {
+            color: #FFF;
+            display: block;
+            background: $red;
+            text-decoration: none;
+            position: relative;
+            height: 40px;
+            line-height: 40px;
+            padding: 0 10px 0 5px;
+            text-align: center;
+            margin-right: 23px;
+        }
+        &:first-child {
+            a {
+                padding-left: 15px;
+                @include border-radius(4px 0 0 4px);
+                &:before {
+                    border: none;
+                }
+            }
+        }
+        &:last-child {
+            a {
+                padding-right: 15px;
+                @include border-radius(0 4px 4px 0);
+                &:after {
+                    border: none;
+                }
+            }
+        }
+        a {
+            &:before,
+            &:after {
+                content: "";
+                position: absolute;
+                top: 0;
+                border: 0 solid $red;
+                border-width: 20px 10px;
+                width: 0;
+                height: 0;
+            }
+            &:before {
+                left: -20px;
+                border-left-color: transparent;
+            }
+            &:after {
+                left: 100%;
+                border-color: transparent;
+                border-left-color: $red;
+            }
+        }
+    }
+    .breadcrum-li-alreadyexistsdisabled {
+        width: 25%;
+        float: left;
+        a {
+            color: #FFF;
+            display: block;
+            background: $grey;
+            text-decoration: none;
+            position: relative;
+            height: 40px;
+            line-height: 40px;
+            padding: 0 10px 0 5px;
+            text-align: center;
+            margin-right: 23px;
+        }
+        &:first-child {
+            a {
+                padding-left: 15px;
+                @include border-radius(4px 0 0 4px);
+                &:before {
+                    border: none;
+                }
+            }
+        }
+        &:last-child {
+            a {
+                padding-right: 15px;
+                @include border-radius(0 4px 4px 0);
+                &:after {
+                    border: none;
+                }
+            }
+        }
+        a {
+            &:before,
+            &:after {
+                content: "";
+                position: absolute;
+                top: 0;
+                border: 0 solid $grey;
+                border-width: 20px 10px;
+                width: 0;
+                height: 0;
+            }
+            &:before {
+                left: -20px;
+                border-left-color: transparent;
+            }
+            &:after {
+                left: 100%;
+                border-color: transparent;
+                border-left-color: $grey;
+            }
+        }
+    }
+}
+
+.ioncardbutton{
+    height: 40px !important;
+    font-size: 17px !important;
 }

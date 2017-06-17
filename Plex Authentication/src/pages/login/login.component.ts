@@ -16,8 +16,6 @@ export class LoginPage {
     userName: string;
     password: string;
     tokenInfo: IToken;
-    @Output() loginClicked: EventEmitter<boolean> =
-        new EventEmitter<boolean>();
     
     constructor(public events: Events, private threeDeeTouch: ThreeDeeTouch, private touchId: TouchID, public _loginService: LoginService,public navCtrl: NavController, public navParams:NavParams, public alertCtrl: AlertController, public modalCtrl: ModalController, private storage: Storage, public viewCtrl: ViewController) {
         

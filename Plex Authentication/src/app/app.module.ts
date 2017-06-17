@@ -28,6 +28,7 @@ import { HomeDetailsService } from '../pages/home-details/home-details.service';
 import { SessionsService } from '../pages/sessions/sessions.service';
 import { HomeDetailsContentService } from '../pages/home-details-content/home-details-content.service';
 import { SettingsService } from '../pages/settings/settings.service';
+import { StatusService } from '../pages/status/status.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -85,6 +86,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Vibration,
     TouchID,
     ThreeDeeTouch, 
+    StatusService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

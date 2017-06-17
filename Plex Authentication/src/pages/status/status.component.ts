@@ -5,7 +5,9 @@ import { HTTP } from '@ionic-native/http';
 import { Storage } from '@ionic/storage';
 import { LoginPage } from '../login/login.component';
 import { IStatus } from '../status/status';
+import { IToken } from '../login/token';
 import { ThreeDeeTouch, ThreeDeeTouchQuickAction, ThreeDeeTouchForceTouch } from '@ionic-native/three-dee-touch';
+import { StatusService } from './status.service';
 
 @Component({
   selector: 'page-status',
@@ -14,36 +16,26 @@ import { ThreeDeeTouch, ThreeDeeTouchQuickAction, ThreeDeeTouchForceTouch } from
 export class StatusPage {
 
   downloadContent: IStatus[];
+  username: string;
+  token: IToken;
 
-  constructor(public events: Events, private threeDeeTouch: ThreeDeeTouch, public navCtrl: NavController, public alertCtrl: AlertController, public loadingCtrl: LoadingController, private http: HTTP, public modalCtrl: ModalController, private storage: Storage) {
-    let downloadContent1: IStatus = {
-      original_title: "Baahubali",
-      id: 12345,
-      overview: "This is the first part",
-      popularity: 4,
-      poster_path: "http://www.gulte.com/content/2015/04/news/1429162142-1364.jpg",
-      release_date: "06/15/2017",
-      vote_average: 4,
-      is_added: true,
-      is_downloaded: false,
-      is_synced: false
-    }
+  constructor(private statusService: StatusService, private storage: Storage, private loadingCtrl: LoadingController) {
+        let loader = this.loadingCtrl.create({
+          content: "Retrieving Queue..."
+        });
+        loader.present();
 
-    let downloadContent2: IStatus = {
-      original_title: "Baahubali 2",
-      id: 1235,
-      overview: "This is the second part",
-      popularity: 5,
-      poster_path: "https://www.desiretrees.in/wp-content/uploads/2017/02/Bahubali-Part-2-Baahubali-2-First-Look-Poster-Bahubali-The-Conclusion-HD-Images-Pics-Wallpapers-Shooting-Stills-1.jpg",
-      release_date: "06/15/2018",
-      vote_average: 5,
-      is_added: true,
-      is_downloaded: true,
-      is_synced: false
-    }
-
-    this.downloadContent = [downloadContent1, downloadContent2];
-    console.log('added');
+        this.storage.get('login_username').then((val) => {
+            this.username = val.toString();
+        });
+        this.storage.get('login_auth_token').then((val) => {
+            this.token = val;        
+            this.statusService.getDownloadContent(this.username, this.token).subscribe(response => {
+              this.downloadContent = response;
+              console.log(response);
+              loader.dismiss();
+            })
+        });
   }
 
 }

@@ -1,25 +1,40 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, RequestOptions, RequestMethod, RequestOptionsArgs, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
+import { IStatus } from '../../pages/status/status';
 import { IHome } from '../../pages/home/home';
+import { IToken } from '../../pages/login/token';
+import { Storage } from '@ionic/storage';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 
 @Injectable()
-export class HomeService {
+export class StatusService {
     
-    private _searchUrl: string = 'https://api.themoviedb.org/3/search/movie?api_key=2e190fc3d20721e08fb65157f3bfdad6&language=en-US&page=1&include_adult=false&query=';
+    //private _authUrl: string = 'http://localhost:16538/api/plex/downloadqueue';
+    private _authUrl: string = 'https://www.venkatpasumarthi.com/api/api/plex/downloadqueue';
 
-    constructor(private _http: Http){
+    constructor(private _http: Http, private storage: Storage){
 
     }
 
-    getMovies(searchKey: string): Observable<IHome[]> {
-        return this._http.get(this._searchUrl + searchKey)
-        .map((response: Response) => <IHome[]>response.json().results)
+    getDownloadContent(username: string, token: IToken): Observable<IStatus[]> {
+        let bodyParam = new URLSearchParams();
+        bodyParam.append("username", username);
+
+        let headerParam = new Headers();
+        headerParam.append("Content-Type","application/x-www-form-urlencoded");
+        headerParam.append("Authorization", "Bearer " + token.access_token);
+
+        let requestOptions = new RequestOptions({headers: headerParam});
+
+        return this._http.get(this._authUrl + '?' + bodyParam.toString(), requestOptions)
+        .map((response: Response) => {
+            console.log(response);
+            return <IStatus[]>response.json()})
         //.do(data => console.log('All:' + JSON.stringify(data)))
         .catch(this.handleError);
     }

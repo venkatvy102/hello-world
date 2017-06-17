@@ -13,37 +13,44 @@
   <div *ngIf="downloadContent!=null">
     <ion-card *ngFor="let content of downloadContent">
       <div>
-        <img [src]="content.poster_path">
-
+        <img [src]="'https://image.tmdb.org/t/p/w640/' + content.TmdbMovieDetails.poster_path" *ngIf="content.TmdbMovieDetails.poster_path != null">
         <ion-item>
           <ion-icon name="videocam" item-left large></ion-icon>
-          <h2>{{ content.original_title }}</h2>
-          <p>{{ content.overview }}</p>
+          <h2>{{ content.TmdbMovieDetails.original_title }}</h2>
+          <p>{{ content.TmdbMovieDetails.overview }}</p>
         </ion-item>
       </div>
+      <ion-item *ngIf="content.AlreadyExist">
+        <ion-icon name="close-circle" item-left large></ion-icon>
+        <h2>Content Already Exist</h2>
+        <p>Need not add to plex again.</p>
+      </ion-item>
       <ion-item class="breadcrumb-item">
         <ul id="breadcrumb">
-          <li class="breadcrum-li-active">
+          <li [class]="content.AlreadyExist ? 'breadcrum-li-alreadyexist' : 'breadcrum-li-active'">
             <a href="#">
               <ion-icon name="search"></ion-icon>
             </a>
           </li>
-          <li [class]="content.is_added ? 'breadcrum-li-active' : 'breadcrum-li-inactive'">
+          <li [class]="content.AlreadyExist ? 'breadcrum-li-alreadyexistsdisabled' : ( content.IsAdded ? 'breadcrum-li-active' : 'breadcrum-li-inactive' )">
             <a href="#">
               <ion-icon name="add-circle-outline"></ion-icon>
             </a>
           </li>
-          <li [class]="content.is_downloaded ? 'breadcrum-li-active' : 'breadcrum-li-inactive'">
+          <li [class]="content.AlreadyExist ? 'breadcrum-li-alreadyexistsdisabled' : ( content.IsDownloaded ? 'breadcrum-li-active' : 'breadcrum-li-inactive' )">
             <a href="#">
               <ion-icon name="cloud-download"></ion-icon>
             </a>
           </li>
-          <li [class]="content.is_synced ? 'breadcrum-li-active' : 'breadcrum-li-inactive'">
+          <li [class]="content.AlreadyExist ? 'breadcrum-li-alreadyexistsdisabled' : ( content.IsSynced ? 'breadcrum-li-active' : 'breadcrum-li-inactive' )">
             <a href="#" style="margin-right: 0px;">
               <ion-icon name="videocam"></ion-icon>
             </a>
           </li>
         </ul>
+        <button ion-button full icon-left class="ioncardbutton" *ngIf="content.IsSynced || content.AlreadyExist">
+          <ion-icon name="checkmark-circle"></ion-icon> Mark Viewed
+        </button>
       </ion-item>
     </ion-card>
   </div>
