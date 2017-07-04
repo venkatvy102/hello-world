@@ -38,7 +38,7 @@ export class HomeDetailsPage {
     if(this.quality) {
       
       let loader = this.loadingCtrl.create({
-          content: "Finding Movies..."
+          content: "Adding to Plex..."
       });
       loader.present();
 
